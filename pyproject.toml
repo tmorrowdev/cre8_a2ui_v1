@@ -1,0 +1,33 @@
+[project]
+name = "a2ui-apps"
+version = "0.1.0"
+description = "Generate A2UI v1.0 apps from prompts through semi-deterministic pathways, rendered with cre8-wc"
+requires-python = ">=3.11"
+dependencies = [
+    "a2ui-core",
+    "anthropic>=0.75",
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "pydantic>=2.10",
+    "a2ui-agent-sdk>=0.11.0",
+    "httpx>=0.28",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.3", "httpx>=0.28", "jsonschema>=4.26"]
+
+[tool.uv.sources]
+# a2ui-core 0.6.0 on PyPI predates the final v1.0 envelope (@catalogId, @metadata,
+# @accessibility, @checks); the fix is only on main. Move to the next release once
+# it ships.
+a2ui-core = { git = "https://github.com/a2ui-project/a2ui", rev = "3ed9601862ecc78027e20ac80ad8b1b98a5d9079", subdirectory = "python/a2ui_core" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/a2ui_apps"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

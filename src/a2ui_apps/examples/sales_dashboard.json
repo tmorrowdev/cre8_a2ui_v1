@@ -1,0 +1,573 @@
+[
+ {
+  "version": "1.0",
+  "createSurface": {
+   "surfaceId": "example_sales_dashboard",
+   "catalogId": "https://cre8.dev/a2ui/v1_0/catalogs/cre8-wc/3.0.1",
+   "components": [
+    {
+     "id": "root",
+     "component": "Cre8LayoutSection",
+     "children": [
+      "dashboard_body"
+     ]
+    },
+    {
+     "id": "text",
+     "component": "Text",
+     "text": "A sales dashboard for an online"
+    },
+    {
+     "id": "title",
+     "component": "Cre8Heading",
+     "type": "headline-large",
+     "tagVariant": "h1",
+     "children": [
+      "text"
+     ]
+    },
+    {
+     "id": "text_2",
+     "component": "Text",
+     "text": "Demo mode: sample data for the last 30 days."
+    },
+    {
+     "id": "subtitle",
+     "component": "Cre8TextPassage",
+     "children": [
+      "text_2"
+     ]
+    },
+    {
+     "id": "text_3",
+     "component": "Text",
+     "text": "Revenue"
+    },
+    {
+     "id": "metric_label",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_3"
+     ]
+    },
+    {
+     "id": "text_4",
+     "component": "Text",
+     "text": "$48.2k"
+    },
+    {
+     "id": "metric_value",
+     "component": "Cre8Heading",
+     "type": "headline-default",
+     "children": [
+      "text_4"
+     ]
+    },
+    {
+     "id": "metric_delta",
+     "component": "Cre8Badge",
+     "text": "+6.1%",
+     "status": "success"
+    },
+    {
+     "id": "metric_card",
+     "component": "Cre8Card",
+     "slot_default": [
+      "metric_label",
+      "metric_value",
+      "metric_delta"
+     ]
+    },
+    {
+     "id": "metric_cell",
+     "component": "Cre8GridItem",
+     "children": [
+      "metric_card"
+     ]
+    },
+    {
+     "id": "text_5",
+     "component": "Text",
+     "text": "Orders"
+    },
+    {
+     "id": "metric_label_2",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_5"
+     ]
+    },
+    {
+     "id": "text_6",
+     "component": "Text",
+     "text": "1,204"
+    },
+    {
+     "id": "metric_value_2",
+     "component": "Cre8Heading",
+     "type": "headline-default",
+     "children": [
+      "text_6"
+     ]
+    },
+    {
+     "id": "metric_delta_2",
+     "component": "Cre8Badge",
+     "text": "+3.0%",
+     "status": "success"
+    },
+    {
+     "id": "metric_card_2",
+     "component": "Cre8Card",
+     "slot_default": [
+      "metric_label_2",
+      "metric_value_2",
+      "metric_delta_2"
+     ]
+    },
+    {
+     "id": "metric_cell_2",
+     "component": "Cre8GridItem",
+     "children": [
+      "metric_card_2"
+     ]
+    },
+    {
+     "id": "text_7",
+     "component": "Text",
+     "text": "Refund rate"
+    },
+    {
+     "id": "metric_label_3",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_7"
+     ]
+    },
+    {
+     "id": "text_8",
+     "component": "Text",
+     "text": "1.9%"
+    },
+    {
+     "id": "metric_value_3",
+     "component": "Cre8Heading",
+     "type": "headline-default",
+     "children": [
+      "text_8"
+     ]
+    },
+    {
+     "id": "metric_delta_3",
+     "component": "Cre8Badge",
+     "text": "+0.4%",
+     "status": "error"
+    },
+    {
+     "id": "metric_card_3",
+     "component": "Cre8Card",
+     "slot_default": [
+      "metric_label_3",
+      "metric_value_3",
+      "metric_delta_3"
+     ]
+    },
+    {
+     "id": "metric_cell_3",
+     "component": "Cre8GridItem",
+     "children": [
+      "metric_card_3"
+     ]
+    },
+    {
+     "id": "text_9",
+     "component": "Text",
+     "text": "Avg. order"
+    },
+    {
+     "id": "metric_label_4",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_9"
+     ]
+    },
+    {
+     "id": "text_10",
+     "component": "Text",
+     "text": "$40.03"
+    },
+    {
+     "id": "metric_value_4",
+     "component": "Cre8Heading",
+     "type": "headline-default",
+     "children": [
+      "text_10"
+     ]
+    },
+    {
+     "id": "metric_card_4",
+     "component": "Cre8Card",
+     "slot_default": [
+      "metric_label_4",
+      "metric_value_4"
+     ]
+    },
+    {
+     "id": "metric_cell_4",
+     "component": "Cre8GridItem",
+     "children": [
+      "metric_card_4"
+     ]
+    },
+    {
+     "id": "metrics",
+     "component": "Cre8Grid",
+     "variant": "4up",
+     "gap": "lg",
+     "children": [
+      "metric_cell",
+      "metric_cell_2",
+      "metric_cell_3",
+      "metric_cell_4"
+     ]
+    },
+    {
+     "id": "text_11",
+     "component": "Text",
+     "text": "Top products"
+    },
+    {
+     "id": "section_title",
+     "component": "Cre8Heading",
+     "type": "title-large",
+     "tagVariant": "h2",
+     "children": [
+      "text_11"
+     ]
+    },
+    {
+     "id": "text_12",
+     "component": "Text",
+     "text": "Product"
+    },
+    {
+     "id": "th",
+     "component": "Cre8TableHeaderCell",
+     "children": [
+      "text_12"
+     ]
+    },
+    {
+     "id": "text_13",
+     "component": "Text",
+     "text": "Units"
+    },
+    {
+     "id": "th_2",
+     "component": "Cre8TableHeaderCell",
+     "children": [
+      "text_13"
+     ]
+    },
+    {
+     "id": "text_14",
+     "component": "Text",
+     "text": "Revenue"
+    },
+    {
+     "id": "th_3",
+     "component": "Cre8TableHeaderCell",
+     "children": [
+      "text_14"
+     ]
+    },
+    {
+     "id": "header_row",
+     "component": "Cre8TableRow",
+     "slot_default": [
+      "th",
+      "th_2",
+      "th_3"
+     ]
+    },
+    {
+     "id": "text_15",
+     "component": "Text",
+     "text": "Ceramic mug"
+    },
+    {
+     "id": "td",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_15"
+     ]
+    },
+    {
+     "id": "text_16",
+     "component": "Text",
+     "text": "320"
+    },
+    {
+     "id": "td_2",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_16"
+     ]
+    },
+    {
+     "id": "text_17",
+     "component": "Text",
+     "text": "$6,400"
+    },
+    {
+     "id": "td_3",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_17"
+     ]
+    },
+    {
+     "id": "row",
+     "component": "Cre8TableRow",
+     "slot_default": [
+      "td",
+      "td_2",
+      "td_3"
+     ]
+    },
+    {
+     "id": "text_18",
+     "component": "Text",
+     "text": "Linen apron"
+    },
+    {
+     "id": "td_4",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_18"
+     ]
+    },
+    {
+     "id": "text_19",
+     "component": "Text",
+     "text": "210"
+    },
+    {
+     "id": "td_5",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_19"
+     ]
+    },
+    {
+     "id": "text_20",
+     "component": "Text",
+     "text": "$8,190"
+    },
+    {
+     "id": "td_6",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_20"
+     ]
+    },
+    {
+     "id": "row_2",
+     "component": "Cre8TableRow",
+     "slot_default": [
+      "td_4",
+      "td_5",
+      "td_6"
+     ]
+    },
+    {
+     "id": "text_21",
+     "component": "Text",
+     "text": "Tea set"
+    },
+    {
+     "id": "td_7",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_21"
+     ]
+    },
+    {
+     "id": "text_22",
+     "component": "Text",
+     "text": "96"
+    },
+    {
+     "id": "td_8",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_22"
+     ]
+    },
+    {
+     "id": "text_23",
+     "component": "Text",
+     "text": "$7,680"
+    },
+    {
+     "id": "td_9",
+     "component": "Cre8TableCell",
+     "children": [
+      "text_23"
+     ]
+    },
+    {
+     "id": "row_3",
+     "component": "Cre8TableRow",
+     "slot_default": [
+      "td_7",
+      "td_8",
+      "td_9"
+     ]
+    },
+    {
+     "id": "table_header",
+     "component": "Cre8TableHeader",
+     "children": [
+      "header_row"
+     ]
+    },
+    {
+     "id": "table_body",
+     "component": "Cre8TableBody",
+     "children": [
+      "row",
+      "row_2",
+      "row_3"
+     ]
+    },
+    {
+     "id": "table",
+     "component": "Cre8Table",
+     "variant": "striped",
+     "children": [
+      "table_header",
+      "table_body"
+     ]
+    },
+    {
+     "id": "section",
+     "component": "HtmlSection",
+     "display": "flex",
+     "direction": "column",
+     "gap": "12",
+     "children": [
+      "section_title",
+      "table"
+     ]
+    },
+    {
+     "id": "text_24",
+     "component": "Text",
+     "text": "Quarterly goals"
+    },
+    {
+     "id": "section_title_2",
+     "component": "Cre8Heading",
+     "type": "title-large",
+     "tagVariant": "h2",
+     "children": [
+      "text_24"
+     ]
+    },
+    {
+     "id": "text_25",
+     "component": "Text",
+     "text": "Revenue"
+    },
+    {
+     "id": "progress_label",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_25"
+     ]
+    },
+    {
+     "id": "progress",
+     "component": "Cre8PercentBar",
+     "value": 62.0,
+     "max": 100.0,
+     "disableActionLeft": true
+    },
+    {
+     "id": "progress_item",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "4",
+     "children": [
+      "progress_label",
+      "progress"
+     ]
+    },
+    {
+     "id": "text_26",
+     "component": "Text",
+     "text": "New customers"
+    },
+    {
+     "id": "progress_label_2",
+     "component": "Cre8Heading",
+     "type": "label-default",
+     "children": [
+      "text_26"
+     ]
+    },
+    {
+     "id": "progress_2",
+     "component": "Cre8PercentBar",
+     "value": 81.0,
+     "max": 100.0,
+     "disableActionLeft": true
+    },
+    {
+     "id": "progress_item_2",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "4",
+     "children": [
+      "progress_label_2",
+      "progress_2"
+     ]
+    },
+    {
+     "id": "section_2",
+     "component": "HtmlSection",
+     "display": "flex",
+     "direction": "column",
+     "gap": "12",
+     "children": [
+      "section_title_2",
+      "progress_item",
+      "progress_item_2"
+     ]
+    },
+    {
+     "id": "dashboard_body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "24",
+     "children": [
+      "title",
+      "subtitle",
+      "metrics",
+      "section",
+      "section_2"
+     ]
+    }
+   ]
+  }
+ }
+]

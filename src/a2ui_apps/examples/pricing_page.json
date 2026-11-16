@@ -1,0 +1,688 @@
+[
+ {
+  "version": "1.0",
+  "createSurface": {
+   "surfaceId": "example_pricing",
+   "catalogId": "https://cre8.dev/a2ui/v1_0/catalogs/cre8-wc/3.0.1",
+   "components": [
+    {
+     "id": "root",
+     "component": "Cre8LayoutSection",
+     "children": [
+      "intro",
+      "plans_grid",
+      "footnote"
+     ]
+    },
+    {
+     "id": "intro",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "12",
+     "align": "center",
+     "textAlign": "center",
+     "paddingY": "48",
+     "children": [
+      "page_title",
+      "page_intro"
+     ]
+    },
+    {
+     "id": "page_title",
+     "component": "Cre8Heading",
+     "type": "display-small",
+     "tagVariant": "h1",
+     "children": [
+      "page_title_text"
+     ]
+    },
+    {
+     "id": "page_title_text",
+     "component": "Text",
+     "text": "Simple, transparent pricing"
+    },
+    {
+     "id": "page_intro",
+     "component": "Cre8TextPassage",
+     "size": "large",
+     "children": [
+      "page_intro_text"
+     ]
+    },
+    {
+     "id": "page_intro_text",
+     "component": "Text",
+     "text": "Pick the plan that fits your team. Upgrade, downgrade or cancel at any time."
+    },
+    {
+     "id": "plans_grid",
+     "component": "Cre8Grid",
+     "variant": "3up",
+     "gap": "lg",
+     "children": [
+      "grid_basic",
+      "grid_pro",
+      "grid_ent"
+     ]
+    },
+    {
+     "id": "grid_basic",
+     "component": "Cre8GridItem",
+     "fullHeight": true,
+     "children": [
+      "card_basic"
+     ]
+    },
+    {
+     "id": "card_basic",
+     "component": "Cre8Card",
+     "fullHeight": true,
+     "slot_header": [
+      "basic_header"
+     ],
+     "slot_default": [
+      "basic_body"
+     ],
+     "slot_footer": [
+      "basic_btn"
+     ]
+    },
+    {
+     "id": "basic_header",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "justify": "between",
+     "align": "center",
+     "paddingX": "24",
+     "paddingY": "16",
+     "children": [
+      "basic_name"
+     ]
+    },
+    {
+     "id": "basic_name",
+     "component": "Cre8Heading",
+     "type": "title-large",
+     "tagVariant": "h2",
+     "children": [
+      "basic_name_text"
+     ]
+    },
+    {
+     "id": "basic_name_text",
+     "component": "Text",
+     "text": "Basic"
+    },
+    {
+     "id": "basic_body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "16",
+     "paddingX": "24",
+     "children": [
+      "basic_price_row",
+      "basic_desc",
+      "basic_divider",
+      "basic_list"
+     ]
+    },
+    {
+     "id": "basic_price_row",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "align": "baseline",
+     "gap": "4",
+     "children": [
+      "basic_price",
+      "basic_period"
+     ]
+    },
+    {
+     "id": "basic_price",
+     "component": "Cre8Heading",
+     "type": "display-small",
+     "tagVariant": "h3",
+     "children": [
+      "basic_price_text"
+     ]
+    },
+    {
+     "id": "basic_price_text",
+     "component": "Text",
+     "text": "$9"
+    },
+    {
+     "id": "basic_period",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "basic_period_text"
+     ]
+    },
+    {
+     "id": "basic_period_text",
+     "component": "Text",
+     "text": "/ month"
+    },
+    {
+     "id": "basic_desc",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "basic_desc_text"
+     ]
+    },
+    {
+     "id": "basic_desc_text",
+     "component": "Text",
+     "text": "Everything you need to get started on your own."
+    },
+    {
+     "id": "basic_divider",
+     "component": "Cre8Divider",
+     "variant": "horizontal"
+    },
+    {
+     "id": "basic_list",
+     "component": "Cre8List",
+     "spacing": "condensed",
+     "children": [
+      "basic_f1",
+      "basic_f2",
+      "basic_f3",
+      "basic_f4"
+     ]
+    },
+    {
+     "id": "basic_f1",
+     "component": "Cre8ListItem",
+     "children": [
+      "basic_f1_t"
+     ]
+    },
+    {
+     "id": "basic_f1_t",
+     "component": "Text",
+     "text": "1 user"
+    },
+    {
+     "id": "basic_f2",
+     "component": "Cre8ListItem",
+     "children": [
+      "basic_f2_t"
+     ]
+    },
+    {
+     "id": "basic_f2_t",
+     "component": "Text",
+     "text": "Up to 10 projects"
+    },
+    {
+     "id": "basic_f3",
+     "component": "Cre8ListItem",
+     "children": [
+      "basic_f3_t"
+     ]
+    },
+    {
+     "id": "basic_f3_t",
+     "component": "Text",
+     "text": "5 GB storage"
+    },
+    {
+     "id": "basic_f4",
+     "component": "Cre8ListItem",
+     "children": [
+      "basic_f4_t"
+     ]
+    },
+    {
+     "id": "basic_f4_t",
+     "component": "Text",
+     "text": "Email support"
+    },
+    {
+     "id": "basic_btn",
+     "component": "Cre8Button",
+     "text": "Choose Basic",
+     "variant": "secondary",
+     "fullWidth": true,
+     "margin": "24",
+     "on_click": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "basic"
+       }
+      }
+     }
+    },
+    {
+     "id": "grid_pro",
+     "component": "Cre8GridItem",
+     "fullHeight": true,
+     "children": [
+      "card_pro"
+     ]
+    },
+    {
+     "id": "card_pro",
+     "component": "Cre8Card",
+     "fullHeight": true,
+     "slot_header": [
+      "pro_header"
+     ],
+     "slot_default": [
+      "pro_body"
+     ],
+     "slot_footer": [
+      "pro_btn"
+     ]
+    },
+    {
+     "id": "pro_header",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "justify": "between",
+     "align": "center",
+     "paddingX": "24",
+     "paddingY": "16",
+     "children": [
+      "pro_name",
+      "pro_badge"
+     ]
+    },
+    {
+     "id": "pro_name",
+     "component": "Cre8Heading",
+     "type": "title-large",
+     "tagVariant": "h2",
+     "brandColor": true,
+     "children": [
+      "pro_name_text"
+     ]
+    },
+    {
+     "id": "pro_name_text",
+     "component": "Text",
+     "text": "Pro"
+    },
+    {
+     "id": "pro_badge",
+     "component": "Cre8Badge",
+     "text": "Most popular",
+     "status": "info"
+    },
+    {
+     "id": "pro_body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "16",
+     "paddingX": "24",
+     "children": [
+      "pro_price_row",
+      "pro_desc",
+      "pro_divider",
+      "pro_list"
+     ]
+    },
+    {
+     "id": "pro_price_row",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "align": "baseline",
+     "gap": "4",
+     "children": [
+      "pro_price",
+      "pro_period"
+     ]
+    },
+    {
+     "id": "pro_price",
+     "component": "Cre8Heading",
+     "type": "display-small",
+     "tagVariant": "h3",
+     "children": [
+      "pro_price_text"
+     ]
+    },
+    {
+     "id": "pro_price_text",
+     "component": "Text",
+     "text": "$29"
+    },
+    {
+     "id": "pro_period",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "pro_period_text"
+     ]
+    },
+    {
+     "id": "pro_period_text",
+     "component": "Text",
+     "text": "/ month"
+    },
+    {
+     "id": "pro_desc",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "pro_desc_text"
+     ]
+    },
+    {
+     "id": "pro_desc_text",
+     "component": "Text",
+     "text": "For growing teams that need more room to collaborate."
+    },
+    {
+     "id": "pro_divider",
+     "component": "Cre8Divider",
+     "variant": "horizontal",
+     "status": "brand"
+    },
+    {
+     "id": "pro_list",
+     "component": "Cre8List",
+     "spacing": "condensed",
+     "children": [
+      "pro_f1",
+      "pro_f2",
+      "pro_f3",
+      "pro_f4"
+     ]
+    },
+    {
+     "id": "pro_f1",
+     "component": "Cre8ListItem",
+     "children": [
+      "pro_f1_t"
+     ]
+    },
+    {
+     "id": "pro_f1_t",
+     "component": "Text",
+     "text": "Up to 10 users"
+    },
+    {
+     "id": "pro_f2",
+     "component": "Cre8ListItem",
+     "children": [
+      "pro_f2_t"
+     ]
+    },
+    {
+     "id": "pro_f2_t",
+     "component": "Text",
+     "text": "Unlimited projects"
+    },
+    {
+     "id": "pro_f3",
+     "component": "Cre8ListItem",
+     "children": [
+      "pro_f3_t"
+     ]
+    },
+    {
+     "id": "pro_f3_t",
+     "component": "Text",
+     "text": "100 GB storage"
+    },
+    {
+     "id": "pro_f4",
+     "component": "Cre8ListItem",
+     "children": [
+      "pro_f4_t"
+     ]
+    },
+    {
+     "id": "pro_f4_t",
+     "component": "Text",
+     "text": "Priority support"
+    },
+    {
+     "id": "pro_btn",
+     "component": "Cre8Button",
+     "text": "Choose Pro",
+     "variant": "primary",
+     "fullWidth": true,
+     "margin": "24",
+     "on_click": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "pro"
+       }
+      }
+     }
+    },
+    {
+     "id": "grid_ent",
+     "component": "Cre8GridItem",
+     "fullHeight": true,
+     "children": [
+      "card_ent"
+     ]
+    },
+    {
+     "id": "card_ent",
+     "component": "Cre8Card",
+     "fullHeight": true,
+     "slot_header": [
+      "ent_header"
+     ],
+     "slot_default": [
+      "ent_body"
+     ],
+     "slot_footer": [
+      "ent_btn"
+     ]
+    },
+    {
+     "id": "ent_header",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "justify": "between",
+     "align": "center",
+     "paddingX": "24",
+     "paddingY": "16",
+     "children": [
+      "ent_name"
+     ]
+    },
+    {
+     "id": "ent_name",
+     "component": "Cre8Heading",
+     "type": "title-large",
+     "tagVariant": "h2",
+     "children": [
+      "ent_name_text"
+     ]
+    },
+    {
+     "id": "ent_name_text",
+     "component": "Text",
+     "text": "Enterprise"
+    },
+    {
+     "id": "ent_body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "16",
+     "paddingX": "24",
+     "children": [
+      "ent_price_row",
+      "ent_desc",
+      "ent_divider",
+      "ent_list"
+     ]
+    },
+    {
+     "id": "ent_price_row",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "row",
+     "align": "baseline",
+     "gap": "4",
+     "children": [
+      "ent_price",
+      "ent_period"
+     ]
+    },
+    {
+     "id": "ent_price",
+     "component": "Cre8Heading",
+     "type": "display-small",
+     "tagVariant": "h3",
+     "children": [
+      "ent_price_text"
+     ]
+    },
+    {
+     "id": "ent_price_text",
+     "component": "Text",
+     "text": "$99"
+    },
+    {
+     "id": "ent_period",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "ent_period_text"
+     ]
+    },
+    {
+     "id": "ent_period_text",
+     "component": "Text",
+     "text": "/ month"
+    },
+    {
+     "id": "ent_desc",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "ent_desc_text"
+     ]
+    },
+    {
+     "id": "ent_desc_text",
+     "component": "Text",
+     "text": "Advanced security and control for large organizations."
+    },
+    {
+     "id": "ent_divider",
+     "component": "Cre8Divider",
+     "variant": "horizontal"
+    },
+    {
+     "id": "ent_list",
+     "component": "Cre8List",
+     "spacing": "condensed",
+     "children": [
+      "ent_f1",
+      "ent_f2",
+      "ent_f3",
+      "ent_f4"
+     ]
+    },
+    {
+     "id": "ent_f1",
+     "component": "Cre8ListItem",
+     "children": [
+      "ent_f1_t"
+     ]
+    },
+    {
+     "id": "ent_f1_t",
+     "component": "Text",
+     "text": "Unlimited users"
+    },
+    {
+     "id": "ent_f2",
+     "component": "Cre8ListItem",
+     "children": [
+      "ent_f2_t"
+     ]
+    },
+    {
+     "id": "ent_f2_t",
+     "component": "Text",
+     "text": "1 TB storage"
+    },
+    {
+     "id": "ent_f3",
+     "component": "Cre8ListItem",
+     "children": [
+      "ent_f3_t"
+     ]
+    },
+    {
+     "id": "ent_f3_t",
+     "component": "Text",
+     "text": "Single sign-on (SSO)"
+    },
+    {
+     "id": "ent_f4",
+     "component": "Cre8ListItem",
+     "children": [
+      "ent_f4_t"
+     ]
+    },
+    {
+     "id": "ent_f4_t",
+     "component": "Text",
+     "text": "Dedicated account manager"
+    },
+    {
+     "id": "ent_btn",
+     "component": "Cre8Button",
+     "text": "Choose Enterprise",
+     "variant": "secondary",
+     "fullWidth": true,
+     "margin": "24",
+     "on_click": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "enterprise"
+       }
+      }
+     }
+    },
+    {
+     "id": "footnote",
+     "component": "HtmlDiv",
+     "textAlign": "center",
+     "paddingY": "32",
+     "children": [
+      "footnote_text"
+     ]
+    },
+    {
+     "id": "footnote_text",
+     "component": "Cre8TextPassage",
+     "size": "small",
+     "children": [
+      "footnote_t"
+     ]
+    },
+    {
+     "id": "footnote_t",
+     "component": "Text",
+     "text": "All prices in USD, billed monthly. Taxes may apply."
+    }
+   ]
+  }
+ }
+]

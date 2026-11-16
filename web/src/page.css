@@ -1,0 +1,88 @@
+:root {
+  --page-bg: #f6f7f9;
+  --page-fg: #1b1f24;
+  --muted: #5b6470;
+  --line: #d9dde3;
+  --panel: #ffffff;
+  --accent: #2f5bd3;
+  --danger: #b42318;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: #111418;
+    --page-fg: #e8ebef;
+    --muted: #9aa4b1;
+    --line: #2a3038;
+    --panel: #181c21;
+    --accent: #7ea2ff;
+    --danger: #ff8a7a;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--page-bg); color: var(--page-fg); font-family: var(--cre8-font-families-inter, system-ui, sans-serif); }
+/* cre8-text-passage (cre8-wc 3.0.1) injects a global `body {}` rule that paints
+   the page with :root's light-mode tokens and makes it a flex column. `html > body`
+   outranks that bare selector, so the page keeps its own colours and flow. */
+/* Split layout: chat and controls on the left, the generated app full height on the right. */
+html > body {
+  display: grid;
+  grid-template-columns: var(--chat-width, 380px) 6px minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--page-bg);
+  color: var(--page-fg);
+}
+.bar { z-index: 10; overflow-y: auto; background: var(--panel); border-right: 1px solid var(--line); padding: 16px; }
+.splitter { cursor: col-resize; background: var(--line); opacity: 0.4; touch-action: none; }
+.splitter:hover, .splitter:focus-visible, .splitter.dragging { opacity: 1; background: var(--accent); outline: none; }
+.stage { position: relative; min-width: 0; overflow: hidden; background: var(--cre8-color-bg-default, var(--page-bg)); }
+.stage-button {
+  position: absolute; top: 10px; right: 14px; z-index: 2;
+  font: inherit; font-size: 12px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--page-fg); cursor: pointer; opacity: 0.85;
+}
+.stage-button:hover { opacity: 1; }
+.stage:fullscreen { width: 100vw; height: 100vh; }
+@media (max-width: 719px) {
+  html > body { display: block; height: auto; overflow: auto; }
+  .bar { border-right: 0; border-bottom: 1px solid var(--line); }
+  .splitter { display: none; }
+  .stage { height: 100vh; height: 100dvh; }
+}
+#prompt-form { display: grid; gap: 8px; }
+#prompt-form label { font-weight: 600; font-size: 14px; }
+#prompt { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--page-bg); color: inherit; resize: vertical; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row button { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: inherit; cursor: pointer; }
+.row button[type="submit"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+#status { font-size: 13px; color: var(--muted); margin-left: auto; }
+#status[data-kind="error"] { color: var(--danger); }
+#trace { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 10px 0 0; font-size: 12px; }
+#trace:empty { display: none; }
+#trace li { border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; color: var(--muted); }
+#trace li[data-deterministic="false"] { border-color: var(--accent); }
+#trace b { color: var(--page-fg); }
+/* The surface carries data-cre8-theme, so these tokens resolve against its own seeds and mode. */
+/* The generated app is its own stacking context: cre8 components use z-indexes
+   up to 1000 (popovers, modals), which would otherwise paint over the sticky header. */
+#surface {
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  overflow: auto;
+  padding: 24px;
+  background: var(--cre8-color-bg-default);
+  color: var(--cre8-color-content-default);
+}
+.theme { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 10px 0 0; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; color: var(--muted); }
+.theme legend { padding: 0 4px; font-weight: 600; color: var(--page-fg); }
+.theme label { display: inline-flex; align-items: center; gap: 6px; }
+.theme select, .theme button { font: inherit; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--page-fg); }
+.theme input[type="color"] { width: 32px; height: 24px; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: none; }
+.theme input[type="range"] { width: 96px; }
+#surface:empty::before { content: "Generated apps render here."; color: var(--muted); }
+.format { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.format select { font: inherit; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--page-fg); }
+#agent { margin: 10px 0 0; font-size: 14px; color: var(--page-fg); }
+#agent:empty { display: none; }

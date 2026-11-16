@@ -1,0 +1,156 @@
+[
+ {
+  "version": "1.0",
+  "createSurface": {
+   "surfaceId": "example_contact_form",
+   "catalogId": "https://cre8.dev/a2ui/v1_0/catalogs/cre8-wc/3.0.1",
+   "components": [
+    {
+     "id": "root",
+     "component": "Cre8LayoutSection",
+     "children": [
+      "form_body"
+     ]
+    },
+    {
+     "id": "text",
+     "component": "Text",
+     "text": "A contact form"
+    },
+    {
+     "id": "title",
+     "component": "Cre8Heading",
+     "type": "headline-large",
+     "tagVariant": "h1",
+     "children": [
+      "text"
+     ]
+    },
+    {
+     "id": "text_2",
+     "component": "Text",
+     "text": "Demo mode: these fields are canned, the pathway is real."
+    },
+    {
+     "id": "intro",
+     "component": "Cre8TextPassage",
+     "children": [
+      "text_2"
+     ]
+    },
+    {
+     "component": "Cre8Field",
+     "type": "text",
+     "id": "field_full_name",
+     "label": "Full name",
+     "name": "full_name",
+     "required": true,
+     "value": {
+      "@path": "/form/full_name"
+     },
+     "isError": false,
+     "errorNote": ""
+    },
+    {
+     "component": "Cre8Field",
+     "type": "email",
+     "id": "field_email",
+     "label": "Email",
+     "name": "email",
+     "required": true,
+     "value": {
+      "@path": "/form/email"
+     },
+     "isError": false,
+     "errorNote": ""
+    },
+    {
+     "component": "Cre8Select",
+     "items": [
+      {
+       "label": "Starter",
+       "value": "Starter"
+      },
+      {
+       "label": "Team",
+       "value": "Team"
+      },
+      {
+       "label": "Enterprise",
+       "value": "Enterprise"
+      }
+     ],
+     "id": "field_plan",
+     "label": "Plan",
+     "name": "plan",
+     "value": {
+      "@path": "/form/plan"
+     },
+     "isError": false,
+     "errorNote": ""
+    },
+    {
+     "component": "Cre8Field",
+     "type": "text",
+     "id": "field_notes",
+     "label": "Notes",
+     "name": "notes",
+     "value": {
+      "@path": "/form/notes"
+     },
+     "isError": false,
+     "errorNote": ""
+    },
+    {
+     "id": "submit",
+     "component": "Cre8Button",
+     "text": "Submit",
+     "variant": "primary",
+     "on_click": {
+      "event": {
+       "name": "submit",
+       "context": {
+        "full_name": {
+         "@path": "/form/full_name"
+        },
+        "email": {
+         "@path": "/form/email"
+        },
+        "plan": {
+         "@path": "/form/plan"
+        },
+        "notes": {
+         "@path": "/form/notes"
+        }
+       }
+      }
+     }
+    },
+    {
+     "id": "form_body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "16",
+     "children": [
+      "title",
+      "intro",
+      "field_full_name",
+      "field_email",
+      "field_plan",
+      "field_notes",
+      "submit"
+     ]
+    }
+   ],
+   "dataModel": {
+    "form": {
+     "full_name": "",
+     "email": "",
+     "plan": "",
+     "notes": ""
+    }
+   }
+  }
+ }
+]

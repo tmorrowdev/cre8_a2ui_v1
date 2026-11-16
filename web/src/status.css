@@ -1,0 +1,147 @@
+/*
+ * Standard status colors for the cre8 surface.
+ *
+ * cre8-wc 3.0.1 ships off-standard status seeds (success #06b6d4 cyan, error
+ * #ec4899 pink), maps info to the brand accent (so a themed accent recolors
+ * every info icon), has no help color, and never flips status tokens in dark
+ * mode. This layer fixes all four with a fixed palette per status, three
+ * steps each, independent of the brand seeds:
+ *
+ *   light  tinted surface   (bg-*)
+ *   mid    the fill         (bg-*-strong, borders)
+ *   dark   ink              (content-*)
+ *   icon   mid in light mode, dark in dark mode
+ *
+ * Light mode: pale surface, saturated mid (4.5:1 under the white knockout
+ * text alerts and badges put on bg-*-strong; warning carries dark text).
+ * Dark mode goes pale: pale surfaces and fills, dark ink and icons, so status
+ * reads as the same pastel chip on a dark page. content-knockout is
+ * near-black there, which suits the pale fills.
+ */
+
+[data-cre8-theme] {
+  --cre8-status-success-light: #dcfce7;
+  --cre8-status-success-mid: #15803d;
+  --cre8-status-success-dark: #14532d;
+  --cre8-status-success-icon: var(--cre8-status-success-mid);
+  --cre8-status-error-light: #fee2e2;
+  --cre8-status-error-mid: #dc2626;
+  --cre8-status-error-dark: #991b1b;
+  --cre8-status-error-icon: var(--cre8-status-error-mid);
+  --cre8-status-warning-light: #fef3c7;
+  --cre8-status-warning-mid: #d97706;
+  --cre8-status-warning-dark: #92400e;
+  --cre8-status-warning-icon: var(--cre8-status-warning-mid);
+  --cre8-status-info-light: #dbeafe;
+  --cre8-status-info-mid: #2563eb;
+  --cre8-status-info-dark: #1e40af;
+  --cre8-status-info-icon: var(--cre8-status-info-mid);
+  --cre8-status-help-light: #ede9fe;
+  --cre8-status-help-mid: #7c3aed;
+  --cre8-status-help-dark: #5b21b6;
+  --cre8-status-help-icon: var(--cre8-status-help-mid);
+
+  /* Ramps (danger buttons use error-600/700) follow the standard hues too. */
+  --cre8-seed-success: #15803d;
+  --cre8-seed-error: #dc2626;
+  --cre8-seed-warning: #d97706;
+
+  --cre8-bg-success: var(--cre8-status-success-light);
+  --cre8-bg-success-strong: var(--cre8-status-success-mid);
+  --cre8-border-success: var(--cre8-status-success-mid);
+  --cre8-content-success: var(--cre8-status-success-dark);
+  --cre8-content-success-icon: var(--cre8-status-success-icon);
+
+  --cre8-bg-error: var(--cre8-status-error-light);
+  --cre8-bg-error-strong: var(--cre8-status-error-mid);
+  --cre8-border-error: var(--cre8-status-error-mid);
+  --cre8-content-error: var(--cre8-status-error-dark);
+  --cre8-content-error-icon: var(--cre8-status-error-icon);
+
+  --cre8-bg-warning: var(--cre8-status-warning-light);
+  --cre8-bg-warning-strong: var(--cre8-status-warning-mid);
+  --cre8-border-warning: var(--cre8-status-warning-mid);
+  --cre8-content-warning: var(--cre8-status-warning-dark);
+  --cre8-content-warning-icon: var(--cre8-status-warning-icon);
+
+  --cre8-bg-info: var(--cre8-status-info-light);
+  --cre8-bg-info-strong: var(--cre8-status-info-mid);
+  --cre8-border-info: var(--cre8-status-info-mid);
+  --cre8-content-info: var(--cre8-status-info-dark);
+  --cre8-content-info-icon: var(--cre8-status-info-icon);
+}
+
+/* Dark mode: pale chips. color-scheme also darkens UA surfaces such as the
+   <dialog> cre8-alert renders into, which is otherwise white. */
+[data-cre8-theme][data-mode='inverse'] {
+  color-scheme: dark;
+  --cre8-status-success-light: #dcfce7;
+  --cre8-status-success-mid: #86efac;
+  --cre8-status-success-dark: #166534;
+  --cre8-status-success-icon: var(--cre8-status-success-dark);
+  --cre8-status-error-light: #fee2e2;
+  --cre8-status-error-mid: #fca5a5;
+  --cre8-status-error-dark: #991b1b;
+  --cre8-status-error-icon: var(--cre8-status-error-dark);
+  --cre8-status-warning-light: #fef3c7;
+  --cre8-status-warning-mid: #fcd34d;
+  --cre8-status-warning-dark: #92400e;
+  --cre8-status-warning-icon: var(--cre8-status-warning-dark);
+  --cre8-status-info-light: #dbeafe;
+  --cre8-status-info-mid: #93c5fd;
+  --cre8-status-info-dark: #1e40af;
+  --cre8-status-info-icon: var(--cre8-status-info-dark);
+  --cre8-status-help-light: #ede9fe;
+  --cre8-status-help-mid: #c4b5fd;
+  --cre8-status-help-dark: #5b21b6;
+  --cre8-status-help-icon: var(--cre8-status-help-dark);
+}
+  [data-cre8-theme][data-mode='inverse'] [data-status='success'] { --cre8-color-content-default: var(--cre8-status-success-dark); }
+  [data-cre8-theme][data-mode='inverse'] [data-status='error'] { --cre8-color-content-default: var(--cre8-status-error-dark); }
+  [data-cre8-theme][data-mode='inverse'] [data-status='warning'] { --cre8-color-content-default: var(--cre8-status-warning-dark); }
+  [data-cre8-theme][data-mode='inverse'] [data-status='info'] { --cre8-color-content-default: var(--cre8-status-info-dark); }
+  [data-cre8-theme][data-mode='inverse'] [data-status='help'] { --cre8-color-content-default: var(--cre8-status-help-dark); }
+
+@media (prefers-color-scheme: dark) {
+  [data-cre8-theme][data-mode='auto'] {
+    color-scheme: dark;
+    --cre8-status-success-light: #dcfce7;
+    --cre8-status-success-mid: #86efac;
+    --cre8-status-success-dark: #166534;
+    --cre8-status-success-icon: var(--cre8-status-success-dark);
+    --cre8-status-error-light: #fee2e2;
+    --cre8-status-error-mid: #fca5a5;
+    --cre8-status-error-dark: #991b1b;
+    --cre8-status-error-icon: var(--cre8-status-error-dark);
+    --cre8-status-warning-light: #fef3c7;
+    --cre8-status-warning-mid: #fcd34d;
+    --cre8-status-warning-dark: #92400e;
+    --cre8-status-warning-icon: var(--cre8-status-warning-dark);
+    --cre8-status-info-light: #dbeafe;
+    --cre8-status-info-mid: #93c5fd;
+    --cre8-status-info-dark: #1e40af;
+    --cre8-status-info-icon: var(--cre8-status-info-dark);
+    --cre8-status-help-light: #ede9fe;
+    --cre8-status-help-mid: #c4b5fd;
+    --cre8-status-help-dark: #5b21b6;
+    --cre8-status-help-icon: var(--cre8-status-help-dark);
+  }
+  [data-cre8-theme][data-mode='auto'] [data-status='success'] { --cre8-color-content-default: var(--cre8-status-success-dark); }
+  [data-cre8-theme][data-mode='auto'] [data-status='error'] { --cre8-color-content-default: var(--cre8-status-error-dark); }
+  [data-cre8-theme][data-mode='auto'] [data-status='warning'] { --cre8-color-content-default: var(--cre8-status-warning-dark); }
+  [data-cre8-theme][data-mode='auto'] [data-status='info'] { --cre8-color-content-default: var(--cre8-status-info-dark); }
+  [data-cre8-theme][data-mode='auto'] [data-status='help'] { --cre8-color-content-default: var(--cre8-status-help-dark); }
+}
+
+/*
+ * Help reuses the info tokens inside cre8-inline-alert, so it is recolored per
+ * element. `status` is not reflected; the renderer mirrors it to data-status.
+ * The --cre8-color-* aliases are set directly because this host is not a
+ * [data-cre8-theme] element, where the aliases are re-resolved.
+ */
+[data-cre8-theme] [data-status='help'] {
+  --cre8-color-bg-info: var(--cre8-status-help-light);
+  --cre8-color-bg-info-strong: var(--cre8-status-help-mid);
+  --cre8-color-border-info: var(--cre8-status-help-mid);
+  --cre8-color-content-info-icon: var(--cre8-status-help-icon);
+}

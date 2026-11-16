@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A2UI Apps</title>
+  </head>
+  <body>
+    <aside class="bar" id="chat">
+      <form id="prompt-form">
+        <label for="prompt">Describe an app</label>
+        <textarea id="prompt" rows="2" placeholder="A registration form for a weekend pottery workshop"></textarea>
+        <div class="row">
+          <button type="submit">Generate</button>
+          <button type="button" id="edit" disabled title="Apply the prompt to the app on screen">Edit</button>
+          <button type="button" class="chip" data-example="A contact form for a bakery with name, email and a message">Form</button>
+          <button type="button" class="chip" data-example="A sales dashboard for an online store">Dashboard</button>
+          <button type="button" class="chip" data-example="A product announcement with a call to action">Freeform</button>
+          <label class="format">Format
+            <select id="format">
+              <option value="express">Express (streams)</option>
+              <option value="direct_json">Direct JSON</option>
+              <option value="elemental">Elemental (experimental)</option>
+              <option value="atom">Atom (experimental)</option>
+            </select>
+          </label>
+          <output id="status" aria-live="polite"></output>
+        </div>
+      </form>
+      <fieldset id="theme" class="theme">
+        <legend>Theme · cre8-a2ui seeds</legend>
+        <label>Mode
+          <select name="mode">
+            <option value="auto">Auto</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label>Primary <input type="color" name="primary" /></label>
+        <label>Accent <input type="color" name="accent" /></label>
+        <label>Neutral <input type="color" name="neutral" /></label>
+        <label>Radius <input type="range" name="radius" min="0" max="32" step="1" /> <output name="radiusOut"></output></label>
+        <label>Font <select name="font"></select></label>
+        <button type="button" name="reset">Reset</button>
+      </fieldset>
+      <p id="agent" aria-live="polite"></p>
+      <ol id="trace" aria-label="Pathway trace"></ol>
+    </aside>
+    <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" aria-label="Resize chat panel" tabindex="0"></div>
+    <section class="stage" id="stage" aria-label="Generated app">
+      <button type="button" id="fullscreen" class="stage-button" title="Show the generated app full screen (Esc to exit)">Full screen</button>
+      <main id="surface"></main>
+    </section>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
