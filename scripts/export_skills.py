@@ -3,7 +3,8 @@
 Uses a2ui-agent-sdk's SkillGenerator. The skills describe what a third-party
 agent can use with a stock cre8 renderer, so they are built from the plain cre8
 catalog: no macros (those need this server's expander) and no functions (the
-renderer functions and agent functions need this server's RPC).
+renderer functions and agent functions need this server's RPC). Examples that
+use composites are exported with the composites expanded to cre8 primitives.
 
     uv run python scripts/export_skills.py [output_dir]     (default: skills/)
 """
@@ -24,7 +25,7 @@ from a2ui.skill.generator import SkillGenerator
 from a2ui.skill.skill import SkillSet
 
 from a2ui_apps.catalog.build import CATALOG_PATH
-from a2ui_apps.examples import all_examples
+from a2ui_apps.examples import all_examples, expanded
 
 CORE_NAME = "a2ui-express"
 CATALOG_NAME = "cre8-wc-a2ui"
@@ -34,7 +35,7 @@ def build_skillset() -> SkillSet:
     document = json.loads(CATALOG_PATH.read_text())
     base = Catalog.from_json(document, protocol_version="1.0")
     config = CatalogConfig(base, [FunctionPruningTransformer([])])
-    examples = [to_message_models(messages) for messages in all_examples().values()]
+    examples = [to_message_models(expanded(messages)) for messages in all_examples().values()]
     processor = A2uiGenerator([config], examples=examples).create_processor(
         {"1.0": {"supportedCatalogIds": [document["catalogId"]]}},
         ExpressFormatFactory(allowed_messages=["createSurface", "updateComponents", "updateDataModel", "deleteSurface"]),

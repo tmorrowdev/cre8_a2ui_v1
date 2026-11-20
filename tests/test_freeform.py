@@ -184,11 +184,12 @@ def test_examples_dir_validates_with_sdk_loader():
     from a2ui.utils.examples import load_examples
 
     from a2ui_apps.examples import EXAMPLES_DIR, all_examples
-    from a2ui_apps.validate import load_catalog
+    from a2ui_apps.macros import inference_catalog
 
-    text = load_examples([load_catalog().api], str(EXAMPLES_DIR), validate=True)
-    assert set(all_examples()) == {"contact_form", "sales_dashboard", "pricing_page"}
-    assert text.count("---BEGIN ") == 3
+    # Examples may use composites, so they validate against the inference catalog (cre8 + macros).
+    text = load_examples([inference_catalog()], str(EXAMPLES_DIR), validate=True)
+    assert {"contact_form", "sales_dashboard", "pricing_page", "agency_overview", "product_launch"} <= set(all_examples())
+    assert text.count("---BEGIN ") == len(all_examples())
 
 
 def test_closest_example_is_decompiled_into_the_prompt():
