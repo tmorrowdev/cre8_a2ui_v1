@@ -1,0 +1,201 @@
+[
+ {
+  "version": "1.0",
+  "createSurface": {
+   "surfaceId": "example_agency_overview",
+   "catalogId": "https://cre8.dev/a2ui/v1_0/catalogs/cre8-wc/3.0.1",
+   "components": [
+    {
+     "id": "root",
+     "component": "Cre8LayoutSection",
+     "children": [
+      "body"
+     ]
+    },
+    {
+     "id": "body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "24",
+     "children": [
+      "title",
+      "intro",
+      "kpis",
+      "charts",
+      "accounts"
+     ]
+    },
+    {
+     "id": "title",
+     "component": "Cre8Heading",
+     "type": "headline-large",
+     "tagVariant": "h1",
+     "children": [
+      "title_text"
+     ]
+    },
+    {
+     "id": "title_text",
+     "component": "Text",
+     "text": "Client performance"
+    },
+    {
+     "id": "intro",
+     "component": "Cre8TextPassage",
+     "children": [
+      "intro_text"
+     ]
+    },
+    {
+     "id": "intro_text",
+     "component": "Text",
+     "text": "Paid media across all active clients, last 7 days. Sample data."
+    },
+    {
+     "id": "kpis",
+     "component": "KpiRow",
+     "title": "This week",
+     "children": [
+      "spend",
+      "roas",
+      "conversions",
+      "cpa"
+     ]
+    },
+    {
+     "id": "spend",
+     "component": "MetricCard",
+     "label": "Spend",
+     "value": "$84.3k",
+     "delta": "+4.2%",
+     "trend": "up",
+     "good_when_up": false
+    },
+    {
+     "id": "roas",
+     "component": "MetricCard",
+     "label": "ROAS",
+     "value": "3.8x",
+     "delta": "+0.4x",
+     "trend": "up"
+    },
+    {
+     "id": "conversions",
+     "component": "MetricCard",
+     "label": "Conversions",
+     "value": "2,914",
+     "delta": "+11%",
+     "trend": "up"
+    },
+    {
+     "id": "cpa",
+     "component": "MetricCard",
+     "label": "Cost per acquisition",
+     "value": "$28.93",
+     "delta": "-6%",
+     "trend": "down",
+     "good_when_up": false
+    },
+    {
+     "id": "charts",
+     "component": "HtmlDiv",
+     "display": "grid",
+     "columns": 2,
+     "gap": "16",
+     "children": [
+      "trend",
+      "channels"
+     ]
+    },
+    {
+     "id": "trend",
+     "component": "ChartCard",
+     "title": "Spend and revenue by day",
+     "kind": "line",
+     "labels": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+     ],
+     "series": [
+      {
+       "label": "Spend",
+       "values": [
+        11.2,
+        12.5,
+        12.1,
+        13.0,
+        12.8,
+        11.0,
+        11.7
+       ]
+      },
+      {
+       "label": "Revenue",
+       "values": [
+        41.0,
+        47.3,
+        45.2,
+        50.1,
+        49.4,
+        40.2,
+        43.9
+       ]
+      }
+     ],
+     "caption": "Revenue in thousands of dollars."
+    },
+    {
+     "id": "channels",
+     "component": "ChartCard",
+     "title": "Spend by channel",
+     "kind": "doughnut",
+     "labels": [
+      "Search",
+      "Social",
+      "Display",
+      "Video"
+     ],
+     "series": [
+      {
+       "label": "Spend",
+       "values": [
+        38,
+        27,
+        12,
+        7
+       ]
+      }
+     ]
+    },
+    {
+     "id": "accounts",
+     "component": "Section",
+     "title": "Needs attention",
+     "children": [
+      "alert"
+     ]
+    },
+    {
+     "id": "alert",
+     "component": "Cre8Alert",
+     "status": "warning",
+     "notDismissible": true,
+     "slot_default": [
+      "alert_text"
+     ]
+    },
+    {
+     "id": "alert_text",
+     "component": "Text",
+     "text": "Northwind's social campaign is 18% over its weekly budget."
+    }
+   ]
+  }
+ }
+]

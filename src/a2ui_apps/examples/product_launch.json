@@ -1,0 +1,188 @@
+[
+ {
+  "version": "1.0",
+  "createSurface": {
+   "surfaceId": "example_product_launch",
+   "catalogId": "https://cre8.dev/a2ui/v1_0/catalogs/cre8-wc/3.0.1",
+   "components": [
+    {
+     "id": "root",
+     "component": "Cre8LayoutSection",
+     "children": [
+      "body"
+     ]
+    },
+    {
+     "id": "body",
+     "component": "HtmlDiv",
+     "display": "flex",
+     "direction": "column",
+     "gap": "48",
+     "children": [
+      "hero",
+      "plans",
+      "demo"
+     ]
+    },
+    {
+     "id": "hero",
+     "component": "HeroBanner",
+     "title": "Reports your clients actually read",
+     "subtitle": "Live dashboards for every account, branded and ready in minutes.",
+     "cta_label": "Start free trial",
+     "on_cta": {
+      "event": {
+       "name": "start_trial",
+       "context": {}
+      }
+     },
+     "secondary_label": "See pricing",
+     "on_secondary": {
+      "event": {
+       "name": "see_pricing",
+       "context": {}
+      }
+     }
+    },
+    {
+     "id": "plans",
+     "component": "Section",
+     "title": "Pricing",
+     "gap": "24",
+     "children": [
+      "plan_grid"
+     ]
+    },
+    {
+     "id": "plan_grid",
+     "component": "HtmlDiv",
+     "display": "grid",
+     "columns": 3,
+     "gap": "16",
+     "children": [
+      "starter",
+      "growth",
+      "agency"
+     ]
+    },
+    {
+     "id": "starter",
+     "component": "PricingTier",
+     "name": "Starter",
+     "price": "$49",
+     "features": [
+      "5 client dashboards",
+      "Weekly email reports"
+     ],
+     "cta_label": "Choose Starter",
+     "on_choose": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "starter"
+       }
+      }
+     }
+    },
+    {
+     "id": "growth",
+     "component": "PricingTier",
+     "name": "Growth",
+     "price": "$149",
+     "features": [
+      "25 client dashboards",
+      "Custom branding",
+      "Daily refresh"
+     ],
+     "cta_label": "Choose Growth",
+     "on_choose": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "growth"
+       }
+      }
+     },
+     "highlighted": true,
+     "badge": "Most popular"
+    },
+    {
+     "id": "agency",
+     "component": "PricingTier",
+     "name": "Agency",
+     "price": "$399",
+     "features": [
+      "Unlimited dashboards",
+      "White-label domain",
+      "Priority support"
+     ],
+     "cta_label": "Choose Agency",
+     "on_choose": {
+      "event": {
+       "name": "choose_plan",
+       "context": {
+        "plan": "agency"
+       }
+      }
+     }
+    },
+    {
+     "id": "demo",
+     "component": "FormSection",
+     "title": "Request a demo",
+     "description": "We reply within one business day.",
+     "submit_label": "Request demo",
+     "on_submit": {
+      "event": {
+       "name": "request_demo",
+       "context": {
+        "name": {
+         "@path": "/demo/name"
+        },
+        "email": {
+         "@path": "/demo/email"
+        },
+        "company": {
+         "@path": "/demo/company"
+        }
+       }
+      }
+     },
+     "children": [
+      "name",
+      "email",
+      "company"
+     ]
+    },
+    {
+     "id": "name",
+     "component": "FormField",
+     "label": "Name",
+     "path": "/demo/name",
+     "required": true
+    },
+    {
+     "id": "email",
+     "component": "FormField",
+     "label": "Work email",
+     "path": "/demo/email",
+     "kind": "email",
+     "required": true
+    },
+    {
+     "id": "company",
+     "component": "FormField",
+     "label": "Company",
+     "path": "/demo/company"
+    }
+   ],
+   "dataModel": {
+    "demo": {
+     "name": "",
+     "email": "",
+     "company": ""
+    }
+   }
+  }
+ }
+]

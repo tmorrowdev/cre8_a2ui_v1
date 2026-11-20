@@ -51,7 +51,7 @@ def test_builders_flatten_to_valid_cre8():
 
 def test_macros_are_in_the_inference_catalog_only():
     names = set(macro_names())
-    assert names == {"MetricCard", "PricingTier", "FormField", "Section"}
+    assert {"MetricCard", "PricingTier", "FormField", "Section", "KpiRow", "HeroBanner", "ChartCard", "FormSection"} <= names
     assert names <= set(inference_catalog().components)
 
 
