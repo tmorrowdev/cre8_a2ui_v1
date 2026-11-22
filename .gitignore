@@ -8,3 +8,6 @@ web/dist/
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 /graft/
+
+# distillation output (regenerable; may contain teacher text)
+training/data/

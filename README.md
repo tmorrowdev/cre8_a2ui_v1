@@ -98,11 +98,33 @@ or the authoring agent wrote it.
 | `FormField` | Cre8Field | an input bound to the data model |
 | `Section` | HtmlSection, Cre8Heading | a titled group of content |
 
+## Optional: a fine-tuned composer
+
+The freeform pathway's first compose can run on a small distilled model, served
+from Modal or Ollama, with the planner (Claude, or Kimi via an OpenAI-compatible
+URL) behind it:
+
+```
+A2UI_APPS_PLANNER_URL / _MODEL / _KEY     optional: any OpenAI-compatible planner instead of Claude
+A2UI_APPS_COMPOSER_URL / _MODEL / _KEY    optional: the fine-tuned composer
+```
+
+`a2ui_apps.composer.RoutedLLM` sends first-attempt composes to the composer with
+a slim prompt: the grammar and positional signatures, with no per-argument docs
+and no examples. Repairs go to the planner with the full prompt and the
+validator's errors. Edits, structured calls and other formats also stay on the
+planner. If the composer can't be reached before anything has streamed, the
+planner takes over. Validation does not change. `scripts/distill.py` builds the
+training set from the real pathway, `training/` fine-tunes on Kaggle and serves
+on Modal, and `scripts/eval_composer.py` scores it. See
+[training/README.md](training/README.md).
+
 ## Layout
 
 ```
 src/a2ui_apps/
   engine.py, router.py         route a prompt; run a pathway; edits and actions
+  llm.py, composer.py          model boundary (Claude, OpenAI-compatible); composer routing and fallback
   pathways/                    form and dashboard (model fills slots, Python assembles), freeform (model composes)
   sdk.py                       a2ui-agent-sdk wiring: catalogs, formats, processors, renderer state
   validate.py                  a2ui_core STRICT validation + unknown-property check
@@ -116,6 +138,8 @@ scripts/
   author_composite.py          build-time: add a composite + example
   build_examples.py            regenerate the assembled examples
   export_skills.py             export SKILL.md files for third-party agents (composites expanded)
+  distill.py, eval_composer.py build and score the fine-tuned composer
+training/                      Kaggle fine-tune notebook, Modal server
   generate_builders.py         regenerate builders/cre8.py from the catalog
 web/                           the cre8 renderer (web_core + cre8-wc)
 ```

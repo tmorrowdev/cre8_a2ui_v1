@@ -11,13 +11,13 @@ also post their data model, which the action handler receives.
 
 Run: uv run uvicorn a2ui_apps.server:app --reload
 Set A2UI_APPS_FAKE_LLM=1 to serve canned plans (no API key, deterministic).
+Model stack (planner, optional fine-tuned composer): see a2ui_apps.composer.llm_from_env.
 """
 
 from __future__ import annotations
 
 import asyncio
 import json
-import os
 from collections.abc import AsyncIterator
 from typing import Any, Iterable
 
@@ -27,7 +27,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
 from a2ui_apps.engine import Engine
-from a2ui_apps.llm import LLM, AnthropicLLM, LLMIncomplete, LLMRefusal
+from a2ui_apps.llm import LLM, LLMIncomplete, LLMRefusal
 from a2ui_apps.pathways.base import PathwayFailed
 from a2ui_apps.rpc import CONTEXT_FUNCTIONS, RpcHub
 from a2ui_apps.sdk import FORMATS
@@ -52,12 +52,9 @@ def _jsonl(items: Iterable[dict[str, Any]]) -> StreamingResponse:
 
 def create_app(llm: LLM | None = None) -> FastAPI:
     if llm is None:
-        if os.environ.get("A2UI_APPS_FAKE_LLM"):
-            from a2ui_apps.demo_llm import DemoLLM
+        from a2ui_apps.composer import llm_from_env
 
-            llm = DemoLLM()
-        else:
-            llm = AnthropicLLM()
+        llm = llm_from_env()
     engine = Engine(llm)
     hub = RpcHub()
     app = FastAPI(title="a2ui-apps")
