@@ -7,13 +7,15 @@ a2ui_core (freeform JSON), and tests swap in `ScriptedLLM` with no API key.
 
 from __future__ import annotations
 
+import json
 import os
 from dataclasses import dataclass, field
 from collections.abc import Iterator
 from typing import Any, Callable, Literal, Protocol, TypeVar
 
 import anthropic
-from pydantic import BaseModel
+import httpx
+from pydantic import BaseModel, ValidationError
 
 T = TypeVar("T", bound=BaseModel)
 Effort = Literal["low", "medium", "high", "xhigh", "max"]
@@ -115,6 +117,88 @@ class AnthropicLLM:
         ) as stream:
             yield from stream.text_stream
             self._check(stream.get_final_message())
+
+
+@dataclass
+class OpenAICompatLLM:
+    """Any OpenAI-compatible chat endpoint: vLLM on Modal, a LiteLLM proxy, Ollama Cloud.
+
+    Plain httpx, so no extra dependency. `effort` has no portable equivalent and
+    is ignored. Structured output asks for a JSON schema (vLLM and Ollama enforce
+    it) and is still validated with pydantic, with one repair round, because not
+    every server enforces the schema.
+    """
+
+    base_url: str
+    model: str
+    api_key: str | None = None
+    max_tokens: int = 16000
+    temperature: float = 0.2
+    timeout: float = 300.0
+    transport: httpx.BaseTransport | None = None  # tests inject httpx.MockTransport
+    _http: httpx.Client | None = field(default=None, init=False, repr=False)
+
+    @property
+    def http(self) -> httpx.Client:
+        if self._http is None:
+            headers = {"Authorization": f"Bearer {self.api_key}"} if self.api_key else {}
+            self._http = httpx.Client(
+                base_url=self.base_url.rstrip("/"), headers=headers, timeout=self.timeout, transport=self.transport
+            )
+        return self._http
+
+    def _body(self, system: list[str], messages: list[dict[str, Any]], **extra: Any) -> dict[str, Any]:
+        chat = ([{"role": "system", "content": "\n\n".join(system)}] if system else []) + list(messages)
+        return {"model": self.model, "messages": chat, "max_tokens": self.max_tokens, "temperature": self.temperature, **extra}
+
+    def _complete(self, body: dict[str, Any]) -> str:
+        response = self.http.post("/chat/completions", json=body)
+        response.raise_for_status()
+        choice = response.json()["choices"][0]
+        if choice.get("finish_reason") == "length":
+            raise LLMIncomplete("response hit max_tokens")
+        return choice["message"].get("content") or ""
+
+    def structured(self, *, task, system, prompt, schema, effort="medium"):
+        messages: list[dict[str, Any]] = [{"role": "user", "content": prompt}]
+        system = [*system, "Respond with one JSON object matching this JSON schema:\n" + json.dumps(schema.model_json_schema())]
+        fmt = {"type": "json_schema", "json_schema": {"name": schema.__name__, "schema": schema.model_json_schema()}}
+        error: Exception | None = None
+        for _ in range(2):
+            raw = self._complete(self._body(system, messages, response_format=fmt))
+            try:
+                return schema.model_validate_json(_strip_fence(raw))
+            except ValidationError as e:
+                error = e
+                messages += [{"role": "assistant", "content": raw}, {"role": "user", "content": f"Invalid: {e}. Return the corrected JSON only."}]
+        raise LLMIncomplete(f"{task}: no valid {schema.__name__} ({error})")
+
+    def text(self, *, task, system, messages, effort="medium"):
+        return self._complete(self._body(system, messages))
+
+    def stream_text(self, *, task, system, messages, effort="medium"):
+        finish = None
+        with self.http.stream("POST", "/chat/completions", json=self._body(system, messages, stream=True)) as response:
+            response.raise_for_status()
+            for line in response.iter_lines():
+                if not line.startswith("data:"):
+                    continue
+                data = line[5:].strip()
+                if data == "[DONE]":
+                    break
+                choice = (json.loads(data).get("choices") or [{}])[0]
+                if delta := (choice.get("delta") or {}).get("content"):
+                    yield delta
+                finish = choice.get("finish_reason") or finish
+        if finish == "length":
+            raise LLMIncomplete("response hit max_tokens")
+
+
+def _strip_fence(text: str) -> str:
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[-1].rsplit("```", 1)[0]
+    return text
 
 
 Responder = Callable[[dict[str, Any]], Any]
